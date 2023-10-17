@@ -13,9 +13,8 @@ function TodoList() {
     return (
         <ul>
             {todoList.map((task) => (
-                <li key={task.id}>{task.title}</li>
+                <TodoListItem key={task.id} task={task} todo={todoList} />
             ))}
-            <TodoListItem test={"1232"} />
         </ul>
     );
 }

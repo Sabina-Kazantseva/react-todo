@@ -1,10 +1,13 @@
-function TodoListItem({ test }) {
-    console.log("word ====> ", test);
+function TodoListItem(props) {
+    console.log("word ====> ", props);
     return (
-        <div>
-            TodoListItem {test}
-        </div>
-    )
+
+        <li>
+            {props.task.title}
+        </li>
+
+
+    );
 }
 
 export default TodoListItem;
