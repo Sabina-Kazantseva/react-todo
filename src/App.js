@@ -1,15 +1,19 @@
-import React from 'react';
 import TodoList from './TodoList';
 import AddTodoForm from './AddTodoForm'; // Import the AddTodoForm component
+import React, { useState } from 'react';
+
 
 function App() {
+  const [newTodo, setNewTodo] = useState("");
+  function handleAddTodo(todoTitle) {
+    setNewTodo(todoTitle);
+  }
   return (
     <div>
       <h1>Todo List</h1>
-
       <TodoList />
-      {/* Use the AddTodoForm component below the heading */}
-      <AddTodoForm />
+      <AddTodoForm onAddTodo={handleAddTodo} />
+      <p>New Todo: {newTodo}</p>
     </div>
   );
 }

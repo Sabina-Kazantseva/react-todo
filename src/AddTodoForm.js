@@ -1,13 +1,19 @@
-import React from "react";
-function AddTodoForm() {
+// import React from "react";
+function AddTodoForm(props) {
+    function handleAddTodo(event) {
+        event.preventDefault();
+        const todoTitle = event.target.title.value;
+        console.log("Todo Title ====>", todoTitle);
+        event.target.reset();
+        props.onAddTodo(todoTitle);
+    }
+
     // Add a multi-line return statement with JSX
     return (
-        <form>
-            {/* Create a label element with text "Title" */}
-            <label htmlFor="todoTitle">Title</label>
+        <form onSubmit={handleAddTodo}>
 
-            {/* Create a text input element with id "todoTitle" */}
-            <input type="text" id="todoTitle" />
+
+            <input type="text" name="title" placeholder="New Todo" />
 
             {/* Create a submit button element with text "Add" */}
             <button type="submit">Add</button>
@@ -16,4 +22,3 @@ function AddTodoForm() {
 }
 
 export default AddTodoForm;
-
