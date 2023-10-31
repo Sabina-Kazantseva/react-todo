@@ -1,9 +1,11 @@
-function TodoListItem(props) {
-    console.log("word ====> ", props);
+import React from 'react';
+
+function TodoListItem({ task }) {
+
     return (
 
         <li>
-            {props.task.title}
+            {task.title}
         </li>
 
 
