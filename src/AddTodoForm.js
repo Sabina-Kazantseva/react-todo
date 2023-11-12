@@ -1,30 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import InputWithLabel from './InputWithLabel';
 
 // import React from "react";
 function AddTodoForm({ onAddTodo }) {
-    const [todoTitle, setTodoTitle] = useState(""); // Step 3: Create todoTitle state
+    const [todoTitle, setTodoTitle] = useState("");
+    const inputRef = useRef(null);
 
     function handleTitleChange(event) {
         const newTodoTitle = event.target.value;
-        setTodoTitle(newTodoTitle); // Step 3: Update todoTitle state
+        setTodoTitle(newTodoTitle); //  Update todoTitle state
     }
     function handleAddTodo(event) {
         event.preventDefault();
         const newTodo = {
             title: todoTitle,
-            id: Date.now(), // Step 3: Generate a unique id
+            id: Date.now(), // : Generate a unique id
         };
-        onAddTodo(newTodo); // Step 3: Pass an object with title and id
-        setTodoTitle(""); // Step 3: Reset todoTitle state
+        onAddTodo(newTodo); //  Pass an object with title and id
+        setTodoTitle(""); // Reset todoTitle state
     }
 
 
     // Add a multi-line return statement with JSX
     return (
         <form onSubmit={handleAddTodo}>
-
-
-            <input type="text" name="title" placeholder="New Todo" value={todoTitle} onChange={handleTitleChange} />
+            <InputWithLabel
+                id="todoTitle"
+                value={todoTitle}
+                onInputChange={handleTitleChange}
+                type="text"
+                autoFocus  // Setting autoFocus directly
+            >
+                Title
+            </InputWithLabel>
 
             {/* Create a submit button element with text "Add" */}
             <button type="submit">Add</button>
