@@ -51,7 +51,7 @@ function App() {
       <AddTodoForm onAddTodo={addTodo} />
       {loading ? <p>Loading...</p> : <TodoList todoList={todoList} onRemoveTodo={removeTodo} />}
 
-      <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
+      {/*<TodoList todoList={todoList} onRemoveTodo={removeTodo} /> */}
 
     </div>
   );
