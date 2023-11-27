@@ -14,7 +14,11 @@ function App() {
       // Simulate a loading delay with setTimeout
       setTimeout(() => {
         // Resolve the Promise with an object containing the data
-        resolve({ data: { todoList: [] } }); // Update todoList default state here
+        resolve({
+          data: {
+            todoList: JSON.parse(localStorage.getItem("savedTodoList")) || [],
+          },
+        }); // Update todoList default state here
       }, 2000); // 2 seconds delay
     });
 
