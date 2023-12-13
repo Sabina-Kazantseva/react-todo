@@ -8,6 +8,51 @@ function App() {
   const [todoList, setTodoList] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // Define the fetchData function
+  const fetchData = async () => {
+    // Declare an empty object variable named options
+    const options = {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_API_TOKEN}`
+      }
+    };
+    // Create a new variable url
+    const url = `https://api.airtable.com/v0/${process.env.REACT_APP_AIRTABLE_BASE_ID}/${process.env.REACT_APP_TABLE_NAME}`;
+
+    try {
+      // Add a const response that awaits fetch.
+      const response = await fetch(url, options);
+
+      // Add a conditional statement that throws a new Error if response.ok is false.
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status}`);
+      }
+
+      // Declare a variable, data, that awaits a parsed version of response
+      const data = await response.json();
+      // Make a console statement that prints out the data variable
+      console.log('Airtable API Response:', data);
+      // Declare another variable, todos
+      const todos = data.records.map(record => ({
+        title: record.fields.title,
+        id: record.id
+      }));
+
+      // Console.log the todos array
+      // console.log('Transformed Todos:', todos);
+
+      // Set the application's todoList by passing the todos to setTodoList
+      setTodoList(todos);
+
+      // Use setIsLoading to set isLoading to false
+      setLoading(false);
+    } catch (error) {
+      // In the catch block, create a console statement that logs the error's message
+      console.error('Fetch Error:', error.message);
+      setLoading(false);
+    }
+  };
   useEffect(() => {
     // Define a Promise to mimic asynchronous data fetching
     const fetchData = new Promise((resolve, reject) => {
