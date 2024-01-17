@@ -1,4 +1,6 @@
 import React, { useEffect, useRef } from 'react';
+import style from './InputWithLabel.module.css';
+
 function InputWithLabel({ id, value, onInputChange, label, type, children, autoFocus }) {
     const inputRef = useRef(null);
 
@@ -9,7 +11,7 @@ function InputWithLabel({ id, value, onInputChange, label, type, children, autoF
     });
     return (
         <>
-            <label htmlFor={id}>{children}</label>
+            <label className={style.Label} htmlFor={id}>{children}</label>
             <input
                 id={id}
                 type={type}
@@ -18,7 +20,6 @@ function InputWithLabel({ id, value, onInputChange, label, type, children, autoF
                 ref={inputRef} // Assign the ref to the input element
 
             />
-
         </>
     );
 

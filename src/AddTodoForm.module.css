@@ -6,11 +6,13 @@
 }
 
 .inputContainer {
+    display: flex;
+    flex-direction: column;
     margin-bottom: 10px;
 }
 
 .submitButton {
-    background-color: #4caf50;
+    background-color: #83cf4a;
     color: #fff;
     padding: 8px 12px;
     border: none;
