@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import InputWithLabel from './InputWithLabel';
+import style from './AddTodoForm.module.css';
 
-// import React from "react";
 function AddTodoForm({ onAddTodo }) {
     const [todoTitle, setTodoTitle] = useState("");
     const inputRef = useRef(null);
@@ -23,19 +23,22 @@ function AddTodoForm({ onAddTodo }) {
 
     // Add a multi-line return statement with JSX
     return (
-        <form onSubmit={handleAddTodo}>
-            <InputWithLabel
-                id="todoTitle"
-                value={todoTitle}
-                onInputChange={handleTitleChange}
-                type="text"
-                autoFocus  // Setting autoFocus directly
-            >
-                Title
-            </InputWithLabel>
+        <form onSubmit={handleAddTodo} className={style.formContainer}>
+            <div className={style.inputContainer}>
+                <InputWithLabel
+                    id="todoTitle"
+                    value={todoTitle}
+                    onInputChange={handleTitleChange}
+                    type="text"
+                    autoFocus
+                >
+                    Title
+                </InputWithLabel>
+            </div>
 
-            {/* Create a submit button element with text "Add" */}
-            <button type="submit">Add</button>
+            <button type="submit" className={style.submitButton}>
+                Add
+            </button>
         </form>
     );
 }
