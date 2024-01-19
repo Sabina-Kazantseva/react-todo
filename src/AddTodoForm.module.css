@@ -23,3 +23,26 @@
 .submitButton:hover {
     background-color: #45a049;
 }
+
+/* Media queries for responsiveness */
+
+/* Mobile devices */
+@media screen and (max-width: 480px) {
+    .formContainer {
+        max-width: 100%;
+    }
+}
+
+/* Tablet devices */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .formContainer {
+        max-width: 80%;
+    }
+}
+
+/* Larger screens */
+@media screen and (min-width: 769px) {
+    .formContainer {
+        max-width: 60%;
+    }
+}
