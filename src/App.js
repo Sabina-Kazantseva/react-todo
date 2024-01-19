@@ -3,7 +3,6 @@ import TodoList from './TodoList';
 import AddTodoForm from './AddTodoForm';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-
 function App() {
   // Using useState and useEffect directly for persistence
   const localStorageKey = 'savedTodoList';
@@ -102,8 +101,8 @@ function App() {
         <Route
           path="/"
           element={
-            <div>
-              <h1>Todo List</h1>
+            <div className='main-container'>
+              <h1 className='header'>Todo List</h1>
               <AddTodoForm onAddTodo={addTodo} />
               {loading ? <p>Loading...</p> : <TodoList todoList={todoList} onRemoveTodo={removeTodo} />}
             </div>
