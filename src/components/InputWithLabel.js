@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import style from './InputWithLabel.module.css';
+import PropTypes from 'prop-types'; // Import PropTypes
 
 function InputWithLabel({ id, value, onInputChange, label, type, children, autoFocus }) {
     const inputRef = useRef(null);
@@ -22,6 +23,17 @@ function InputWithLabel({ id, value, onInputChange, label, type, children, autoF
             />
         </>
     );
+    // Define propTypes for InputWithLabel
+    InputWithLabel.propTypes = {
+        id: PropTypes.string.isRequired,
+        value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+        onInputChange: PropTypes.func.isRequired,
+        label: PropTypes.string,
+        type: PropTypes.string.isRequired,
+        children: PropTypes.node.isRequired,
+        autoFocus: PropTypes.bool,
+    };
+
 
 }
 export default InputWithLabel;
