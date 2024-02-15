@@ -8,7 +8,7 @@ function TodoList({ todoList, onRemoveTodo }) {
     console.log("TodoList - todoList:", todoList);
 
     return (
-        <ul>
+        <ul style={{ listStyleType: "none", padding: 0 }}>
             {todoList.map((todo) => (
                 <TodoListItem key={todo.id} task={todo} onRemoveTodo={onRemoveTodo} />
             ))}
