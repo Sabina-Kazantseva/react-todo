@@ -1,6 +1,7 @@
 import React from 'react';
-import style from './TodoListItem.module.css';
 import PropTypes from 'prop-types'; // Import PropTypes
+import RemoveTodoIcon from './RemoveTodoIcon';
+import styles from "./TodoListItem.module.css"
 
 function TodoListItem({ task, onRemoveTodo }) {
     const handleRemove = () => {
@@ -8,10 +9,11 @@ function TodoListItem({ task, onRemoveTodo }) {
     };
 
     return (
-        <li className={style.removeButton}>
-            {task.title}
-            <button type="button" onClick={handleRemove}>
-                Remove
+        <li className={styles.listItem}>
+            <p className={styles.listTitle}>{task.title}</p>
+            <button aria-label="remove todo" type="button" onClick={handleRemove} className={styles.removeButton} >
+                {/* <span>Remove</span> */}
+                <RemoveTodoIcon className={styles.removeIcon} />
             </button>
         </li>
     );

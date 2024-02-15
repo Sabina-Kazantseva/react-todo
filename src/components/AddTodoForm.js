@@ -1,11 +1,10 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import InputWithLabel from './InputWithLabel';
 import style from './AddTodoForm.module.css';
 import PropTypes from 'prop-types'; // Import PropTypes
 
 function AddTodoForm({ onAddTodo }) {
     const [todoTitle, setTodoTitle] = useState("");
-    const inputRef = useRef(null);
 
     function handleTitleChange(event) {
         const newTodoTitle = event.target.value;
@@ -27,6 +26,7 @@ function AddTodoForm({ onAddTodo }) {
         <form onSubmit={handleAddTodo} className={style.formContainer}>
             <div className={style.inputContainer}>
                 <InputWithLabel
+                    placeholder='enter a todo title...'
                     id="todoTitle"
                     value={todoTitle}
                     onInputChange={handleTitleChange}

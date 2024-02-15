@@ -1,0 +1,18 @@
+.sort {
+    display: flex;
+    align-items: center;
+    /* width: 150px; */
+    color: #f7f4de;
+    background: #00a9ffd4;
+    margin-top: 5px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+}
+
+.sortIcon {
+
+    height: 20px;
+    width: 20px;
+}

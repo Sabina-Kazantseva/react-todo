@@ -1,13 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import TodoList from './TodoList';  // Updated path
 import AddTodoForm from './AddTodoForm';
+import styles from './TodoContainer.module.css'
+import SortAscIcon from './SortAscIcon';
+import SortDescIcon from './SortDescIcon';
+
 const sortOrderValue = localStorage.getItem("SORT_ORDER") ?? 'desc'
 function TodoContainer() {
     const [todoList, setTodoList] = useState([]);
     const [loading, setLoading] = useState(true);
     const [sortOrder, setSortOrder] = useState(sortOrderValue); // Default to ascending order
 
-    const fetchData = async () => {
+    const fetchData = useCallback(async () => {
         const options = {
             method: 'GET',
             headers: {
@@ -53,11 +57,11 @@ function TodoContainer() {
             console.error('Fetch Error:', error.message);
             setLoading(false);
         }
-    };
+    }, [sortOrder]);
 
     useEffect(() => {
         fetchData();
-    }, [sortOrder]);
+    }, [sortOrder, fetchData]);
 
     const toggleSortOrder = () => {
         setSortOrder((prevOrder) => (prevOrder === 'asc' ? 'desc' : 'asc'));
@@ -68,6 +72,7 @@ function TodoContainer() {
     const removeTodo = (id) => {
         const updatedTodoList = todoList.filter((todo) => todo.id !== id);
         setTodoList(updatedTodoList);
+
     }
     useEffect(() => {
         localStorage.setItem("SORT_ORDER", sortOrder)
@@ -80,7 +85,15 @@ function TodoContainer() {
             <h1 className='header'>Todo List</h1>
             <AddTodoForm onAddTodo={addTodo} />
 
-            <button onClick={toggleSortOrder}>Sort by {sortOrder === "asc" ? "descending" : "ascending"}</button>
+            <button className={styles.sort} onClick={toggleSortOrder}>
+                Sort by
+                {sortOrder === "asc"
+                    ? <> descending <SortDescIcon className={styles.sortIcon} /></>
+                    : <> ascending <SortAscIcon className={styles.sortIcon} /></>
+                }
+
+            </button>
+
             {loading ? <p>Loading...</p> : <TodoList todoList={todoList} onRemoveTodo={removeTodo} />}
 
         </div>
